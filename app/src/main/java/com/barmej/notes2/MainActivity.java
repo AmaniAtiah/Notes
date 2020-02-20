@@ -132,12 +132,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Note note = data.getParcelableExtra(Constants.NOTE);
 
         if (requestCode == ADD_NOTE) {
 
             if (resultCode == RESULT_OK && data != null) {
 
-                    Note note = data.getParcelableExtra(Constants.NOTE);
+                   // Note note = data.getParcelableExtra(Constants.NOTE);
                     addItemNote(note);
 
             }
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK && data != null) {
 
                 int position = data.getIntExtra(Constants.POSITION, 0);
-                Note note = data.getParcelableExtra(Constants.NOTE);
+               // Note note = data.getParcelableExtra(Constants.NOTE);
                 modifyItem(position, note);
             }
         }

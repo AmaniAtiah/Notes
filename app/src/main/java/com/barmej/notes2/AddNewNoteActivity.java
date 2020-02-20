@@ -272,7 +272,8 @@ public class AddNewNoteActivity extends AppCompatActivity {
                 return;
 
             }else {
-                note = new TextNote(textNote, color);
+                note = new TextNote(textNote,color) {
+                };
 
             }
         }
