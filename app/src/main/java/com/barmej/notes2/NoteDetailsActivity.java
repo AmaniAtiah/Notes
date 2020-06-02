@@ -54,17 +54,17 @@ public class NoteDetailsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.radioButton:
+                    case R.id.yellow_btn:
                         color = ContextCompat.getColor(NoteDetailsActivity.this, R.color.yellow);
                         backgroundColor.setBackgroundResource(R.color.yellow);
                         break;
 
-                    case R.id.radioButton2:
+                    case R.id.red_btn:
                         color = ContextCompat.getColor(NoteDetailsActivity.this, R.color.red);
                         backgroundColor.setBackgroundResource(R.color.red);
                         break;
 
-                    case R.id.radioButton3:
+                    case R.id.blue_btn:
                         color = ContextCompat.getColor(NoteDetailsActivity.this, R.color.blue);
                         backgroundColor.setBackgroundResource(R.color.blue);
                         break;

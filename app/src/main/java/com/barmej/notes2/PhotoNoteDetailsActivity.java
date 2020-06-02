@@ -38,6 +38,9 @@ public class PhotoNoteDetailsActivity extends AppCompatActivity {
     private int position;
     private PhotoNote photoNote;
 
+    private static final int TAKE_PHOTO = 0;
+    private static final int SELECT_PHOTO = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,17 +81,17 @@ public class PhotoNoteDetailsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.radioButton:
+                    case R.id.yellow_btn:
                         color = ContextCompat.getColor(PhotoNoteDetailsActivity.this, R.color.yellow);
                         backgroundColor.setBackgroundResource(R.color.yellow);
                         break;
 
-                    case R.id.radioButton2:
+                    case R.id.red_btn:
                         color = ContextCompat.getColor(PhotoNoteDetailsActivity.this, R.color.red);
                         backgroundColor.setBackgroundResource(R.color.red);
                         break;
 
-                    case R.id.radioButton3:
+                    case R.id.blue_btn:
                         color = ContextCompat.getColor(PhotoNoteDetailsActivity.this, R.color.blue);
                         backgroundColor.setBackgroundResource(R.color.blue);
                         break;
@@ -104,10 +107,10 @@ public class PhotoNoteDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         switch (which) {
-                            case 0:
+                            case TAKE_PHOTO:
                                 takePhoto();
                                 break;
-                            case 1:
+                            case SELECT_PHOTO:
                                 selectPhoto();
                                 break;
                         }
@@ -137,23 +140,6 @@ public class PhotoNoteDetailsActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent,getString(R.string.take_picture)), IMAGE_CAPTURE_CODE);
     }
 
-    private void editPhotoNote() {
-
-        String textPhotoNoteEdit = mEditTextPhotoNote.getText().toString();
-
-        if (textPhotoNoteEdit.trim().isEmpty() || mSelectPhotoUri == null) {
-            return;
-        }
-
-        photoNote.setTextNote(textPhotoNoteEdit);
-        photoNote.setImageNote(mSelectPhotoUri);
-        photoNote.setColor(color);
-        Intent intent = new Intent();
-        intent.putExtra(Constants.NOTE, photoNote);
-        intent.putExtra(Constants.POSITION, position);
-        setResult(RESULT_OK, intent);
-        finish();
-    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -191,7 +177,7 @@ public class PhotoNoteDetailsActivity extends AppCompatActivity {
         }
     }
 
-    protected void firePickPhotoIntent() {
+    private void firePickPhotoIntent() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("image/*");
@@ -199,5 +185,22 @@ public class PhotoNoteDetailsActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), PICK_IMAGE);
     }
 
+    private void editPhotoNote() {
+
+        String textPhotoNoteEdit = mEditTextPhotoNote.getText().toString();
+
+        if (textPhotoNoteEdit.trim().isEmpty() || mSelectPhotoUri == null) {
+            return;
+        }
+
+        photoNote.setTextNote(textPhotoNoteEdit);
+        photoNote.setImageNote(mSelectPhotoUri);
+        photoNote.setColor(color);
+        Intent intent = new Intent();
+        intent.putExtra(Constants.NOTE, photoNote);
+        intent.putExtra(Constants.POSITION, position);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 
 }
