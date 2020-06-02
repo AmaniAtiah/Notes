@@ -15,7 +15,6 @@ import com.barmej.notes2.date.Note;
 public class NoteDetailsActivity extends AppCompatActivity {
     private EditText mEditTextNote;
     private View backgroundColor;
-
     private int color;
     private String textNoteEdit;
     private int position;

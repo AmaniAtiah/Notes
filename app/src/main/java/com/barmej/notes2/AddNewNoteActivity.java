@@ -243,7 +243,7 @@ public class AddNewNoteActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_PHOTO_FROM_GALLERY_PERMISSION);
 
         } else {
-            PhotoNoteDetailsActivity.firePickPhotoIntent();
+            firePickPhotoIntent();
         }
     }
 
