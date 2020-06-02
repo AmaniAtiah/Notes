@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int ADD_NOTE = 142;
     private static final int EDIT_NOTE = 140;
+    private static final String SHARED_PREFERNCES = "Shared prefernces";
+    private static final String TYPE = "type";
+    private static final String TASK_LIST= "task list";
     private RecyclerView mRecyclerView;
     private ArrayList<Note> mItems;
     private NoteAdapter mAdapter;
@@ -88,22 +91,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveData() {
 
-        SharedPreferences sharedPreferences = getSharedPreferences("shared prefernces", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERNCES, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Uri.class, new UriSerializerDeserializer())
                 .create();
         String json = gson.toJson(mItems);
         System.out.println(json);
-        editor.putString("task_list", json);
+        editor.putString(TASK_LIST, json);
         editor.apply();
     }
 
 
 
     private void loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("shared prefernces", MODE_PRIVATE);
-        RuntimeTypeAdapterFactory<Note> noteTypesAdapter = RuntimeTypeAdapterFactory.of(Note.class, "type")
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERNCES, MODE_PRIVATE);
+        RuntimeTypeAdapterFactory<Note> noteTypesAdapter = RuntimeTypeAdapterFactory.of(Note.class, TYPE)
                 .registerSubtype(PhotoNote.class)
                 .registerSubtype(CheckNote.class)
                 .registerSubtype(TextNote.class);
@@ -111,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 .registerTypeAdapter(Uri.class, new UriSerializerDeserializer())
                 .registerTypeAdapterFactory(noteTypesAdapter)
                 .create();
-        String json = sharedPreferences.getString("task_list", null);
-        System.out.println("Ret" + json);
+        String json = sharedPreferences.getString(TASK_LIST, null);
         Type listOfNotes = new TypeToken<List<Note>>() {
         }.getType();
         mItems = gson.fromJson(json, listOfNotes);
@@ -132,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //     Note note = data.getParcelableExtra(Constants.NOTE);
 
         if (requestCode == ADD_NOTE) {
 
