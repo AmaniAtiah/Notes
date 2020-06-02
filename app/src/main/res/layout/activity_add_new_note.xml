@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView">
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/blue_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -60,7 +60,7 @@
             android:checked="false" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/yellow_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -70,7 +70,7 @@
             android:checked="false" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/red_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView">
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/note_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -105,7 +105,7 @@
             />
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/check_note_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -116,7 +116,7 @@
             />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/photo_note_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"

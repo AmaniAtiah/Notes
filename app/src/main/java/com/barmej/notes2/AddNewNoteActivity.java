@@ -38,20 +38,23 @@ public class AddNewNoteActivity extends AppCompatActivity {
     private static final int IMAGE_CAPTURE_CODE =1001;
     private static final int PICK_IMAGE = 120;
 
+    private static final int TAKE_PHOTO = 0;
+    private static final int SELECT_PHOTO = 1;
+
     private int noteType = Constants.IMAGE_DATA;
 
-    CardView cardViewNote;
-    CardView cardViewPhoto;
-    CardView cardViewCheck;
+    private CardView cardViewNote;
+    private CardView cardViewPhoto;
+    private CardView cardViewCheck;
 
-    EditText editTextNotePhoto;
-    EditText editTextNote;
-    EditText editTextCheckNote;
+    private EditText editTextNotePhoto;
+    private EditText editTextNote;
+    private EditText editTextCheckNote;
 
     private ImageView mNewPhotoIv;
-    Uri mSelectPhotoUri;
+    private Uri mSelectPhotoUri;
 
-    CheckBox checkBoxNote;
+    private CheckBox checkBoxNote;
     private int color;
 
 
@@ -97,21 +100,21 @@ public class AddNewNoteActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.radioButton4:
+                    case R.id.photo_note_btn:
                         noteType = Constants.IMAGE_DATA;
                         cardViewPhoto.setVisibility(View.VISIBLE);
                         cardViewCheck.setVisibility(View.GONE);
                         cardViewNote.setVisibility(View.GONE);
                         break;
 
-                    case R.id.radioButton5:
+                    case R.id.check_note_btn:
                         noteType = Constants.CHECK_DATA;
                         cardViewCheck.setVisibility(View.VISIBLE);
                         cardViewNote.setVisibility(View.GONE);
                         cardViewPhoto.setVisibility(View.GONE);
                         break;
 
-                    case R.id.radioButton6:
+                    case R.id.note_btn:
                         noteType = Constants.NOTE_DATA;
                         cardViewNote.setVisibility(View.VISIBLE);
                         cardViewCheck.setVisibility(View.GONE);
@@ -126,21 +129,21 @@ public class AddNewNoteActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.radioButton:
+                    case R.id.yellow_btn:
                         color = ContextCompat.getColor(AddNewNoteActivity.this, R.color.yellow);
                         cardViewPhoto.setBackgroundResource(R.color.yellow);
                         cardViewNote.setBackgroundResource(R.color.yellow);
                         cardViewCheck.setBackgroundResource(R.color.yellow);
                         break;
 
-                    case R.id.radioButton2:
+                    case R.id.red_btn:
                         color = ContextCompat.getColor(AddNewNoteActivity.this, R.color.red);
                         cardViewPhoto.setBackgroundResource(R.color.red);
                         cardViewNote.setBackgroundResource(R.color.red);
                         cardViewCheck.setBackgroundResource(R.color.red);
                         break;
 
-                    case R.id.radioButton3:
+                    case R.id.blue_btn:
                         color = ContextCompat.getColor(AddNewNoteActivity.this, R.color.blue);
                         cardViewPhoto.setBackgroundResource(R.color.blue);
                         cardViewNote.setBackgroundResource(R.color.blue);
@@ -158,10 +161,10 @@ public class AddNewNoteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         switch (which) {
-                            case 0:
+                            case TAKE_PHOTO:
                                 takePhoto();
                                 break;
-                            case 1:
+                            case SELECT_PHOTO:
                                 selectPhoto();
                                 break;
                         }
@@ -272,8 +275,7 @@ public class AddNewNoteActivity extends AppCompatActivity {
                 return;
 
             }else {
-                note = new TextNote(textNote,color) {
-                };
+                note = new TextNote(textNote,color);
 
             }
         }
