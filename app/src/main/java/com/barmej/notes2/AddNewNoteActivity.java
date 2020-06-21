@@ -304,7 +304,6 @@ public class AddNewNoteActivity extends AppCompatActivity {
                 note = new CheckNote(textNoteCheck,color,checkNote);
             }
         }
-
         intent.putExtra(Constants.NOTE, note);
         setResult(RESULT_OK, intent);
         finish();
